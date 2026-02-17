@@ -2,9 +2,10 @@
   "name": "nextix",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
     "start": "next start"
   },
   "dependencies": {
@@ -18,6 +19,11 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "9.39.2",
+    "eslint-config-upleveled": "^9.4.6",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.2.0",
+    "stylelint-config-upleveled": "^2.0.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
