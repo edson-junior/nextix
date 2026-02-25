@@ -1,12 +1,4 @@
-export type EventTicket = {
-  id: string;
-  image: string;
-  name: string;
-  date: string;
-  location: string;
-  price: number;
-  description: string;
-};
+import type { EventTicket } from '@/types/products';
 
 export const products: EventTicket[] = [
   {

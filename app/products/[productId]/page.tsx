@@ -1,6 +1,6 @@
 import Quantity from '@/app/ui/product/Quantity';
-import { products } from '@/lib/mockedProducts';
-import { LOCALE } from '@/lib/utils';
+import { baseUrl, LOCALE } from '@/lib/utils';
+import type { EventTicket } from '@/types/products';
 import Link from 'next/link';
 import {
   LuArrowLeft,
@@ -10,32 +10,18 @@ import {
 } from 'react-icons/lu';
 
 type ProductPageProps = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ productId: string }>;
 };
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { id } = await params;
-  const product = products.find((p) => p.id === id);
+  const { productId } = await params;
+  const response = await fetch(`${baseUrl}/api/products/${productId}`);
 
-  // TODO:
-  // convert this into a 404 notFound()
-  if (!product) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <main className="max-w-7xl mx-auto px-4 py-16 flex-1">
-          <p className="text-lg text-neutral-600">Product not found</p>
-          <Link
-            href="/"
-            className="text-blue-600 hover:underline mt-4 inline-flex items-center gap-2"
-          >
-            <LuArrowLeft size={16} />
-            Back to events
-          </Link>
-        </main>
-      </div>
-    );
+  if (!response.ok) {
+    return <p>Error while trying to load the product.</p>;
   }
 
+  const product: EventTicket = await response.json();
   const formattedDate = new Date(product.date);
 
   return (

@@ -1,16 +1,23 @@
-import type { EventTicket } from '@/lib/mockedProducts';
 import { LOCALE } from '@/lib/utils';
+import type { EventTicket } from '@/types/products';
 import Link from 'next/link';
 
-function ProductCard({ id, image, name, date, location, price }: EventTicket) {
+function ProductCard({
+  productId,
+  image,
+  name,
+  date,
+  location,
+  price,
+}: EventTicket) {
   const formatedDate = new Date(date);
 
   return (
     <div
-      key={`product-${id}`}
+      key={`product-${productId}`}
       className="group relative overflow-hidden rounded-lg border border-neutral-200 bg-white transition-all duration-300 hover:shadow-lg"
     >
-      <Link href={`/products/${id}`}>
+      <Link href={`/products/${productId}`}>
         <div className="aspect-square overflow-hidden bg-neutral-100">
           <img
             src={image}
