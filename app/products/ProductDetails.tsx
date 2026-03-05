@@ -8,9 +8,9 @@ import {
   LuShoppingBag,
 } from 'react-icons/lu';
 import { updateCart } from '@/app/cart/actions';
-import type { EventTicket } from '@/types/products';
+import type { CartItem, EventTicket } from '@/types/products';
 import { LOCALE } from '@/lib/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function ProductDetails({
   productId,
@@ -20,7 +20,8 @@ export function ProductDetails({
   location,
   price,
   description,
-}: EventTicket) {
+  cartData,
+}: EventTicket & { cartData: CartItem[] }) {
   const formattedDate = new Date(date);
 
   const [quantity, setQuantity] = useState(1);
@@ -32,6 +33,32 @@ export function ProductDetails({
   function handleDecrement() {
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   }
+
+  const handleAddToCart = async () => {
+    if (cartData.find((product) => product.id === productId)) {
+      const updatedCart = cartData.map((product) =>
+        product.id === productId
+          ? { ...product, quantity: product.quantity + quantity }
+          : product,
+      );
+
+      await updateCart(updatedCart);
+      return;
+    }
+
+    const updatedCart = [
+      ...cartData,
+      {
+        id: Number(productId),
+        image,
+        name,
+        price,
+        quantity,
+      },
+    ];
+
+    await updateCart(updatedCart);
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -108,38 +135,13 @@ export function ProductDetails({
         <button
           className="flex gap-2 items-center justify-center bg-zinc-900 text-white px-8 py-3 cursor-pointer rounded-md font-semibold hover:bg-zinc-800 transition-colors"
           onClick={async () => {
-            await updateCart([
-              {
-                id: 1,
-                name: 'Wireless Headphones',
-                price: 79.99,
-                quantity: 1,
-              },
-              {
-                id: 2,
-                name: 'USB-C Cable',
-                price: 12.99,
-                quantity: 2,
-              },
-              {
-                id: 3,
-                name: 'Phone Case',
-                price: 24.99,
-                quantity: 1,
-              },
-              {
-                id: 4,
-                name: 'Screen Protector',
-                price: 9.99,
-                quantity: 3,
-              },
-              {
-                id: 5,
-                name: 'Portable Charger',
-                price: 49.99,
-                quantity: 1,
-              },
-            ]);
+            // const updatedCartQuantity = cartProducts?.map((product) =>
+            //   product.id === productId ? { ...product, quantity } : product,
+            // );
+
+            // setCartProducts(updatedCartQuantity);
+            // await updateCart(updatedCartQuantity);
+            await handleAddToCart();
           }}
         >
           <LuShoppingBag size={18} /> Add to Cart

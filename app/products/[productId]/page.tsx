@@ -3,6 +3,7 @@ import type { EventTicket } from '@/types/products';
 import Link from 'next/link';
 import { LuArrowLeft } from 'react-icons/lu';
 import ProductDetails from '../ProductDetails';
+import { cookies } from 'next/headers';
 
 type ProductPageProps = {
   params: Promise<{ productId: string }>;
@@ -18,6 +19,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const product: EventTicket = await response.json();
 
+  const cartCookie = await cookies();
+  const cartData = cartCookie.get('cart')?.value;
+
   return (
     <div className="min-h-screen flex flex-col">
       <main className="max-w-7xl mx-auto px-4 py-16 flex-1 w-full">
@@ -28,7 +32,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <LuArrowLeft size={16} />
           Back to events
         </Link>
-        <ProductDetails {...product} />
+        <ProductDetails
+          {...product}
+          cartData={cartData ? JSON.parse(cartData) : []}
+        />
       </main>
     </div>
   );
