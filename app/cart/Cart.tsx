@@ -18,11 +18,12 @@ export default function Cart({ cartData }: Props) {
     setCartProducts(cartData);
   }, []);
 
-  const handleRemoveProduct = (productId: number) => {
+  const handleRemoveProduct = async (productId: number) => {
     const updatedCart = cartProducts.filter(
       (product) => product.id !== productId,
     );
     setCartProducts(updatedCart);
+    await updateCart(updatedCart);
   };
 
   const handleQuantityChange = async (
@@ -98,7 +99,7 @@ export default function Cart({ cartData }: Props) {
               </div>
 
               <button
-                onClick={() => handleRemoveProduct(product.id)}
+                onClick={async () => handleRemoveProduct(product.id)}
                 data-test-id={`cart-product-remove-${product.id}`}
                 className="flex items-center gap-2 cursor-pointer ml-4 p-2 bg-red-600 text-white rounded hover:bg-red-700"
                 aria-label="remove product"
