@@ -33,7 +33,7 @@ async function Header() {
           }}
         >
           <LuShoppingBag size={28} />
-          {totalLength && (
+          {totalLength > 0 && (
             <span className="flex w-6 h-6 items-center text-sm justify-center rounded-full text-white bg-red-600 absolute -top-3 -right-3">
               {totalLength}
             </span>

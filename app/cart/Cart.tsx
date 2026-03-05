@@ -49,6 +49,10 @@ export default function Cart({ cartData }: Props) {
   const quantityButtonClasses =
     'p-2 w-10 h-10 items-center font-semibold justify-center flex border border-gray-300 rounded hover:bg-gray-100';
 
+  if (cartProducts.length === 0) {
+    return <p className="text-gray-600">Your cart is empty</p>;
+  }
+
   return (
     <>
       <div className="flex flex-col md:flex-row gap-8">

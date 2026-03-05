@@ -135,12 +135,6 @@ export function ProductDetails({
         <button
           className="flex gap-2 items-center justify-center bg-zinc-900 text-white px-8 py-3 cursor-pointer rounded-md font-semibold hover:bg-zinc-800 transition-colors"
           onClick={async () => {
-            // const updatedCartQuantity = cartProducts?.map((product) =>
-            //   product.id === productId ? { ...product, quantity } : product,
-            // );
-
-            // setCartProducts(updatedCartQuantity);
-            // await updateCart(updatedCartQuantity);
             await handleAddToCart();
           }}
         >

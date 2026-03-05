@@ -9,11 +9,7 @@ export default async function CartPage() {
     <div className="min-h-screen max-w-7xl mx-auto flex flex-col">
       <main className="px-4 pb-20 pt-16">
         <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
-        {!cartData ? (
-          <p className="text-gray-600">Your cart is empty</p>
-        ) : (
-          <Cart cartData={JSON.parse(cartData)} />
-        )}
+        <Cart cartData={JSON.parse(cartData ?? '[]')} />
       </main>
     </div>
   );
