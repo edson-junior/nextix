@@ -17,7 +17,10 @@ function ProductCard({
       key={`product-${productId}`}
       className="group relative overflow-hidden rounded-lg border border-neutral-200 bg-white transition-all duration-300 hover:shadow-lg"
     >
-      <Link href={`/products/${productId}`}>
+      <Link
+        href={`/products/${productId}`}
+        data-test-id={`product-${productId}`}
+      >
         <div className="aspect-square overflow-hidden bg-neutral-100">
           <img
             src={image}

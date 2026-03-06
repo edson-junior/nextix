@@ -3,6 +3,9 @@
 import { useRouter } from 'next/navigation';
 import { updateCart } from '../cart/actions';
 
+const inputClass =
+  'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500';
+
 export default function CheckoutPage() {
   const router = useRouter();
 
@@ -23,7 +26,7 @@ export default function CheckoutPage() {
               type="text"
               name="firstName"
               data-test-id="checkout-first-name"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="John"
               required
             />
@@ -35,7 +38,7 @@ export default function CheckoutPage() {
               type="text"
               name="lastName"
               data-test-id="checkout-last-name"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="Doe"
               required
             />
@@ -47,7 +50,7 @@ export default function CheckoutPage() {
               type="email"
               name="email"
               data-test-id="checkout-email"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="john.doe@example.com"
               required
             />
@@ -59,7 +62,7 @@ export default function CheckoutPage() {
               type="text"
               name="address"
               data-test-id="checkout-address"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="123 Main St"
               required
             />
@@ -71,7 +74,7 @@ export default function CheckoutPage() {
               type="text"
               name="city"
               data-test-id="checkout-city"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="New York"
               required
             />
@@ -85,7 +88,7 @@ export default function CheckoutPage() {
               type="text"
               name="postalCode"
               data-test-id="checkout-postal-code"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="10001"
               required
             />
@@ -97,7 +100,7 @@ export default function CheckoutPage() {
               type="text"
               name="country"
               data-test-id="checkout-country"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="United States"
               required
             />
@@ -111,7 +114,7 @@ export default function CheckoutPage() {
               type="text"
               name="creditCard"
               data-test-id="checkout-credit-card"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="1234 5678 9012 3456"
               required
             />
@@ -125,7 +128,7 @@ export default function CheckoutPage() {
               type="text"
               name="expirationDate"
               data-test-id="checkout-expiration-date"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="MM/YY (e.g. 08/26)"
               required
             />
@@ -139,7 +142,7 @@ export default function CheckoutPage() {
               type="text"
               name="securityCode"
               data-test-id="checkout-security-code"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={inputClass}
               placeholder="123"
               required
             />

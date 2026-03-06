@@ -134,6 +134,7 @@ export function ProductDetails({
 
         <button
           className="flex gap-2 items-center justify-center bg-zinc-900 text-white px-8 py-3 cursor-pointer rounded-md font-semibold hover:bg-zinc-800 transition-colors"
+          data-test-id="product-add-to-cart"
           onClick={async () => {
             await handleAddToCart();
           }}

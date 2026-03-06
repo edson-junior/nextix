@@ -65,7 +65,7 @@ export default function Cart({ cartData }: Props) {
             >
               <div className="flex-1">
                 <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
-                <p className="text-gray-600 mb-2">
+                <p className="text-sm mb-2">
                   Price: {product.price.toFixed(2)}
                 </p>
 
@@ -100,6 +100,10 @@ export default function Cart({ cartData }: Props) {
                     +
                   </button>
                 </div>
+
+                <p className="text-sm">
+                  Subtotal: {(product.price * product.quantity).toFixed(2)}
+                </p>
               </div>
 
               <button
