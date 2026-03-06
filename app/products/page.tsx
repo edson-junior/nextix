@@ -2,6 +2,15 @@ import { baseUrl } from '@/lib/utils';
 import ProductCard from '../ui/ProductCard';
 import type { EventTicket } from '@/types/products';
 
+export const metadata = {
+  title: 'All Events',
+  description:
+    'The most awesome events in Amsterdam and beyond that will inspire you!',
+  alternates: {
+    canonical: `${baseUrl}/products`,
+  },
+};
+
 export default async function ProductsPage() {
   const response = await fetch(`${baseUrl}/api/products`);
 

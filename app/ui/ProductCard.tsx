@@ -26,6 +26,8 @@ function ProductCard({
             src={image}
             alt={name}
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            width={800}
+            height={600}
           />
         </div>
         <div className="flex flex-col gap-2 p-4">

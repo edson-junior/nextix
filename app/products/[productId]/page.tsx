@@ -4,10 +4,37 @@ import Link from 'next/link';
 import { LuArrowLeft } from 'react-icons/lu';
 import ProductDetails from '../ProductDetails';
 import { cookies } from 'next/headers';
+import type { Metadata } from 'next';
 
 type ProductPageProps = {
   params: Promise<{ productId: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const { productId } = await params;
+  const response = await fetch(`${baseUrl}/api/products/${productId}`);
+
+  if (!response.ok) {
+    return {
+      title: 'Product Not Found',
+      alternates: {
+        canonical: `${baseUrl}/products/${productId}`,
+      },
+    };
+  }
+
+  const product: EventTicket = await response.json();
+
+  return {
+    title: product.name,
+    description: `Checkout this awesome event - ${product.name}`,
+    alternates: {
+      canonical: `${baseUrl}/products/${productId}`,
+    },
+  };
+}
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { productId } = await params;

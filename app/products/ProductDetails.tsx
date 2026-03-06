@@ -68,6 +68,8 @@ export function ProductDetails({
           alt={name}
           className="h-full w-full object-cover"
           data-test-id="product-image"
+          width={800}
+          height={600}
         />
       </div>
       <div className="flex flex-col gap-4">

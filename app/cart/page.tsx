@@ -1,5 +1,14 @@
 import { cookies } from 'next/headers';
+import { baseUrl } from '@/lib/utils';
 import Cart from './Cart';
+
+export const metadata = {
+  title: 'Shopping Cart',
+  description: 'View and manage the items in your shopping cart.',
+  alternates: {
+    canonical: `${baseUrl}/cart`,
+  },
+};
 
 export default async function CartPage() {
   const cartCookie = await cookies();
